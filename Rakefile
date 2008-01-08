@@ -1,22 +1,20 @@
-# Utilizes global rake-tasks: alias rake="rake -r rake -R /path/to/rakelibdir"
-# (Base tasks at <http://prometheus.khi.uni-koeln.de/svn/scratch/rake-tasks/>)
+begin
+  require 'hen'
+rescue LoadError
+  abort "Please install the 'hen' gem first."
+end
 
 require 'lib/xml/xquery/version'
 
-FILES = FileList['lib/**/*.rb'].to_a
-RDOCS = %w[README COPYING ChangeLog]
-OTHER = FileList['[A-Z]*', 'specs/*.rb', 'test_data/*'].to_a
+Hen.lay! {{
+  :rubyforge => {
+    :package => 'ruby-xquery'
+  },
 
-task(:doc_spec) {{
-  :title      => 'ruby-xquery Application documentation',
-  :rdoc_files => RDOCS + FILES
-}}
-
-task(:gem_spec) {{
-  :name             => 'ruby-xquery',
-  :version          => XML::XQuery::VERSION,
-  :summary          => "Libxml's XPath support + plain ol' Ruby = XQuery (kind of... ;-)",
-  :files            => FILES + OTHER,
-  :require_path     => 'lib',
-  :extra_rdoc_files => RDOCS
+  :gem => {
+    :version     => XML::XQuery::VERSION,
+    :summary     => "Libxml's XPath support + plain ol' Ruby = XQuery (kind of... ;-)",
+    :files       => FileList['lib/**/*.rb'].to_a,
+    :extra_files => FileList['[A-Z]*', 'specs/*.rb', 'test_data/*'].to_a
+  }
 }}
