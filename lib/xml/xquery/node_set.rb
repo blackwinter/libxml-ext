@@ -24,6 +24,8 @@
 ###############################################################################
 #++
 
+require 'forwardable'
+
 module XML::XQuery
 
   module NodeSet
@@ -41,19 +43,15 @@ module XML::XQuery
       # return unique when asked for array
       @to_a = to_a.uniq
 
-      def self.to_a
-        @to_a
-      end
+      class << self
 
-      # forward to unique array
-      def self.each(&block)
-        @to_a.each(&block)
-      end
-      def self.length
-        @to_a.length
-      end
-      def self.size
-        @to_a.size
+        extend Forwardable
+
+        attr_reader :to_a
+
+        # forward to unique array
+        def_delegators :@to_a, :each, :length, :size
+
       end
 
       self
