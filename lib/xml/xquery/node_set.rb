@@ -3,7 +3,7 @@
 #                                                                             #
 # A component of ruby-xquery, mimicking XQuery in Ruby.                       #
 #                                                                             #
-# Copyright (C) 2007 Jens Wille                                               #
+# Copyright (C) 2007-2008 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
@@ -26,51 +26,41 @@
 
 require 'forwardable'
 
-module XML::XQuery
+class XML::Node::Set
 
-  module NodeSet
-
-    # Object#dup gives a segmentation fault on #to_a (via Enumerable)!!
-    def dup
-      xpath.set
-    end
-
-    def uniq
-      dup.uniq!
-    end
-
-    def uniq!
-      # return unique when asked for array
-      @to_a = to_a.uniq
-
-      class << self
-
-        extend Forwardable
-
-        attr_reader :to_a
-
-        # forward to unique array
-        def_delegators :@to_a, :each, :length, :size
-
-      end
-
-      self
-    end
-
-    def contents
-      map { |i|
-        i.content
-      }
-    end
-
-    def to_s
-      contents.join(' | ')
-    end
-
+  # Object#dup gives a segmentation fault on #to_a (via Enumerable)!!
+  def dup
+    xpath.set
   end
 
-end
+  def uniq
+    dup.uniq!
+  end
 
-class XML::Node::Set
-  include XML::XQuery::NodeSet
+  def uniq!
+    # return unique when asked for array
+    @to_a = to_a.uniq
+
+    class << self
+
+      extend Forwardable
+
+      attr_reader :to_a
+
+      # forward to unique array
+      def_delegators :@to_a, :each, :length, :size
+
+    end
+
+    self
+  end
+
+  def contents
+    map { |i| i.content }
+  end
+
+  def to_s
+    contents.join(' | ')
+  end
+
 end

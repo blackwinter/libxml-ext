@@ -3,7 +3,7 @@
 #                                                                             #
 # A component of ruby-xquery, mimicking XQuery in Ruby.                       #
 #                                                                             #
-# Copyright (C) 2007 Jens Wille                                               #
+# Copyright (C) 2007-2008 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
@@ -24,27 +24,10 @@
 ###############################################################################
 #++
 
-require 'xml/xquery/enhanced_find'
+class XML::Node
 
-module XML::XQuery
-
-  module Node
-
-    include XML::XQuery::EnhancedFind
-
-    def to_s
-      content
-    end
-
-    def self.included(base)
-      # overwrite original "property reader"
-      base.send(:define_method, :[], instance_method(:[]))
-    end
-
+  def to_s
+    content
   end
 
-end
-
-class XML::Node
-  include XML::XQuery::Node
 end

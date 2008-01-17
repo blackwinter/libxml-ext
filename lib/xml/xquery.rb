@@ -4,7 +4,7 @@
 # ruby-xquery -- Libxml's XPath support + plain ol' Ruby = XQuery (kind of... #
 # ;-)                                                                         #
 #                                                                             #
-# Copyright (C) 2007 Jens Wille                                               #
+# Copyright (C) 2007-2008 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
@@ -32,6 +32,6 @@ require 'xml/libxml'
 module XML::XQuery
 end
 
-require 'xml/xquery/document'
-require 'xml/xquery/node'
-require 'xml/xquery/node_set'
+Dir[File.join(File.dirname(__FILE__), 'xquery', '**', '*.rb')].each { |rb|
+  require rb
+}
