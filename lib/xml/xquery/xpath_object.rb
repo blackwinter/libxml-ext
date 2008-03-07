@@ -27,7 +27,7 @@
 class XML::XPath::Object
 
   def to_s
-    set.to_s
+    set.to_s.strip
   end
 
 end
