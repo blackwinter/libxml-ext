@@ -29,7 +29,7 @@ module XML::XQuery
   module EnhancedFind
 
     def enhanced_find(xpath)
-      find(xpath.gsub(/\*\*/, 'descendant::node()'))
+      find(xpath.gsub(/\*\*/, 'descendant::node()'), namespaces)
     end
     alias_method :[], :enhanced_find
 
@@ -49,9 +49,25 @@ module XML::XQuery
 end
 
 class XML::Document
+
   include XML::XQuery::EnhancedFind
+
+  def namespaces
+    @namespaces ||= {}.to_a
+  end
+
+  def namespaces=(ns)
+    @namespaces = ns.to_a
+  end
+
 end
 
 class XML::Node
+
   include XML::XQuery::EnhancedFind
+
+  def namespaces
+    doc.namespaces
+  end
+
 end
