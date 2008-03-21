@@ -52,12 +52,19 @@ class XML::Document
 
   include XML::XQuery::EnhancedFind
 
+  DEFAULT_NAMESPACES = []
+
+  # container for XML::Node's access to its document's namespaces
+  @namespaces = Hash.new(DEFAULT_NAMESPACES)
+
+  class << self; attr_reader :namespaces; end
+
   def namespaces
-    @namespaces ||= {}.to_a
+    @namespaces ||= DEFAULT_NAMESPACES
   end
 
   def namespaces=(ns)
-    @namespaces = ns.to_a
+    @namespaces = self.class.namespaces[to_s] = ns.to_a
   end
 
 end
@@ -67,7 +74,8 @@ class XML::Node
   include XML::XQuery::EnhancedFind
 
   def namespaces
-    doc.namespaces
+    # this is *damn* inefficient!!
+    XML::Document.namespaces[doc.to_s]
   end
 
 end
