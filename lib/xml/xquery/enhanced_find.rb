@@ -64,7 +64,9 @@ class XML::Document
   end
 
   def namespaces=(ns)
-    @namespaces = self.class.namespaces[to_s] = ns.to_a
+    raise "can't set namespaces (document has no URL)" unless url
+
+    @namespaces = self.class.namespaces[url] = ns.to_a
   end
 
 end
@@ -74,8 +76,7 @@ class XML::Node
   include XML::XQuery::EnhancedFind
 
   def namespaces
-    # this is *damn* inefficient!!
-    XML::Document.namespaces[doc.to_s]
+    XML::Document.namespaces[doc.url]
   end
 
 end
