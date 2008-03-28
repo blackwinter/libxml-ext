@@ -26,8 +26,8 @@
 
 class XML::XPath::Object
 
-  def to_s
-    set.to_s.strip
+  def to_s(sep = ' | ')
+    set.to_s(sep)
   end
 
 end

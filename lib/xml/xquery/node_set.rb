@@ -55,12 +55,12 @@ class XML::Node::Set
     self
   end
 
-  def contents
-    map { |i| i.content }
+  def contents(sep = ' | ')
+    map { |n| (c = n.to_s(sep)).empty? ? nil : c }.compact
   end
 
-  def to_s
-    contents.join(' | ')
+  def to_s(sep = ' | ')
+    contents(sep).join(sep)
   end
 
 end

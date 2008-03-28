@@ -26,8 +26,8 @@
 
 class XML::Node
 
-  def to_s
-    content
+  def to_s(sep = nil)
+    content.strip
   end
 
 end
