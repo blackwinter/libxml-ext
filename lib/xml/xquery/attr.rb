@@ -24,7 +24,7 @@
 ###############################################################################
 #++
 
-class XML::Attr
+class LibXML::XML::Attr
 
   def to_s(sep = nil)
     value.strip

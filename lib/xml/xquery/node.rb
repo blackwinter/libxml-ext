@@ -24,7 +24,7 @@
 ###############################################################################
 #++
 
-class XML::Node
+class LibXML::XML::Node
 
   def to_s(sep = nil)
     content.strip

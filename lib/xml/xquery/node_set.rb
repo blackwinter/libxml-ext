@@ -26,33 +26,54 @@
 
 require 'forwardable'
 
-class XML::Node::Set
+class LibXML::XML::Node::Set
 
-  # Object#dup gives a segmentation fault on #to_a (via Enumerable)!!
-  def dup
-    xpath.set
+  extend Forwardable
+
+  def_delegators :to_a, :each, :length, :size
+
+  alias_method :_xquery_original_to_a, :to_a
+
+  def to_a
+    if @_uniq
+      # return unique nodes according to their #to_s
+      seen = Hash.new { |h, k| h[k] = true; false }
+      uniq = []
+
+      _xquery_original_to_a.each { |n|
+        uniq << n unless seen[n.to_s]
+      }
+
+      uniq
+    else
+      _xquery_original_to_a
+    end
   end
 
   def uniq
-    dup.uniq!
+    proxy = LibXML::XML::Node::Set.new.uniq!
+    proxy.instance_variable_set(:@_this, self)
+
+    class << proxy
+      (instance_methods - %w[to_a each length size]).each { |method|
+        undef_method(method) unless method =~ /\A__/
+      }
+
+      def method_missing(*args)
+        block_given? ? @_this.send(*args) { |a| yield a } : @_this.send(*args)
+      end
+    end
+
+    proxy
   end
 
   def uniq!
-    # return unique when asked for array
-    @to_a = to_a.uniq
-
-    class << self
-
-      extend Forwardable
-
-      attr_reader :to_a
-
-      # forward to unique array
-      def_delegators :@to_a, :each, :length, :size
-
-    end
-
+    @_uniq = true
     self
+  end
+
+  def uniq?
+    @_uniq
   end
 
   def contents(sep = ' | ')

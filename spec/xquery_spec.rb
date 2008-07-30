@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), 'spec_helper')
 
-describe XML::XQuery do
+describe LibXML::XML::XQuery do
 
   it 'should find all acts' do
     DOC['//ACT'].size.should == 5

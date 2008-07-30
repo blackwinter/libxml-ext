@@ -24,7 +24,7 @@
 ###############################################################################
 #++
 
-module XML::XQuery
+module LibXML::XML::XQuery
 
   module EnhancedFind
 
@@ -48,9 +48,9 @@ module XML::XQuery
 
 end
 
-class XML::Document
+class LibXML::XML::Document
 
-  include XML::XQuery::EnhancedFind
+  include LibXML::XML::XQuery::EnhancedFind
 
   DEFAULT_NAMESPACES = []
 
@@ -71,12 +71,12 @@ class XML::Document
 
 end
 
-class XML::Node
+class LibXML::XML::Node
 
-  include XML::XQuery::EnhancedFind
+  include LibXML::XML::XQuery::EnhancedFind
 
   def namespaces
-    XML::Document.namespaces[doc.url]
+    LibXML::XML::Document.namespaces[doc.url]
   end
 
 end

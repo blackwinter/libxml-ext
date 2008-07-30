@@ -12,7 +12,7 @@ Hen.lay! {{
   },
 
   :gem => {
-    :version     => XML::XQuery::VERSION,
+    :version     => LibXML::XML::XQuery::VERSION,
     :summary     => "Libxml's XPath support + plain ol' Ruby = XQuery (kind of... ;-)",
     :files       => FileList['lib/**/*.rb'].to_a,
     :extra_files => FileList['[A-Z]*', 'specs/*.rb', 'test_data/*'].to_a

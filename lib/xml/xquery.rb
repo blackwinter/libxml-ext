@@ -25,11 +25,16 @@
 ###############################################################################
 #++
 
-require 'xml/libxml'
+begin
+  require 'rubygems'
+rescue LoadError
+end
+
+require 'libxml'
 
 # Libxml's XPath support + plain ol' Ruby = XQuery (kind of... ;-)
 
-module XML::XQuery
+module LibXML::XML::XQuery
 end
 
 Dir[File.join(File.dirname(__FILE__), 'xquery', '**', '*.rb')].each { |rb|
