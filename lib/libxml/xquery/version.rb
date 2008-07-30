@@ -7,8 +7,8 @@ module LibXML
       module Version
 
         MAJOR = 0
-        MINOR = 0
-        TINY  = 9
+        MINOR = 1
+        TINY  = 0
 
         class << self
 

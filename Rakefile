@@ -4,7 +4,7 @@ rescue LoadError
   abort "Please install the 'hen' gem first."
 end
 
-require 'lib/xml/xquery/version'
+require 'lib/libxml/xquery/version'
 
 Hen.lay! {{
   :rubyforge => {
