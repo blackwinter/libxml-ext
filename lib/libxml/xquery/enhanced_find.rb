@@ -66,7 +66,7 @@ class LibXML::XML::Document
   def namespaces=(ns)
     raise "can't set namespaces (document has no URL)" unless url
 
-    @namespaces = self.class.namespaces[url] = ns.to_a
+    @namespaces = self.class.namespaces[url] = ns
   end
 
 end
