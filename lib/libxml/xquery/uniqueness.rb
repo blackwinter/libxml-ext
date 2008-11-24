@@ -26,13 +26,13 @@
 
 require 'forwardable'
 
-class LibXML::XML::Node::Set
+module LibXML::XML::XQuery::Uniqueness
 
   extend Forwardable
 
-  def_delegators :to_a, :each, :length, :size
+  DELEGATORS = %w[to_a each length size]
 
-  alias_method :_xquery_original_to_a, :to_a
+  def_delegators *DELEGATORS
 
   def to_a
     if @_uniq
@@ -51,11 +51,11 @@ class LibXML::XML::Node::Set
   end
 
   def uniq
-    proxy = LibXML::XML::Node::Set.new.uniq!
+    proxy = self.class.new.uniq!
     proxy.instance_variable_set(:@_this, self)
 
     class << proxy
-      (instance_methods - %w[to_a each length size]).each { |method|
+      (instance_methods - DELEGATORS).each { |method|
         undef_method(method) unless method =~ /\A__/
       }
 
@@ -76,12 +76,19 @@ class LibXML::XML::Node::Set
     @_uniq
   end
 
-  def contents(sep = ' | ')
-    map { |n| (c = n.to_s(sep)).empty? ? nil : c }.compact
+  def self.included(base)
+    base.send(:alias_method, :_xquery_original_to_a, :to_a)
+
+    # overwrite original methods
+    instance_methods.each { |method|
+      base.send(:define_method, method, instance_method(method))
+    }
   end
 
-  def to_s(sep = ' | ')
-    contents(sep).join(sep)
-  end
+end
+
+class LibXML::XML::XPath::Object
+
+  include LibXML::XML::XQuery::Uniqueness
 
 end

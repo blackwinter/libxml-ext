@@ -24,22 +24,26 @@
 ###############################################################################
 #++
 
-require 'forwardable'
+class LibXML::XML::Attr
+
+  def to_s(sep = nil)
+    value.strip
+  end
+
+end
+
+class LibXML::XML::Node
+
+  def to_s(sep = nil)
+    content.strip
+  end
+
+end
 
 class LibXML::XML::XPath::Object
 
-  extend Forwardable
-
-  def_delegators :set, :to_a, :each, :length, :size, :uniq, :uniq!, :uniq?
-
-  alias_method :_xquery_original_set, :set
-
-  def set
-    @set ||= _xquery_original_set
-  end
-
   def to_s(sep = ' | ')
-    set.to_s(sep)
+    map { |n| (c = n.to_s(sep)).empty? ? nil : c }.compact.join(sep)
   end
 
 end

@@ -32,6 +32,9 @@ end
 
 require 'libxml'
 
+raise "need libxml-ruby version >= 0.9.3, got #{LibXML::XML::VERSION}" \
+  unless LibXML::XML::VERSION >= '0.9.3'
+
 # Libxml's XPath support + plain ol' Ruby = XQuery (kind of... ;-)
 
 module LibXML::XML::XQuery

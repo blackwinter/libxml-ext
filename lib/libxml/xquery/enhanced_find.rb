@@ -24,26 +24,22 @@
 ###############################################################################
 #++
 
-module LibXML::XML::XQuery
+module LibXML::XML::XQuery::EnhancedFind
 
-  module EnhancedFind
+  def enhanced_find(xpath)
+    find(xpath.gsub(/\*\*/, 'descendant::node()'), namespaces)
+  end
+  alias_method :[], :enhanced_find
 
-    def enhanced_find(xpath)
-      find(xpath.gsub(/\*\*/, 'descendant::node()'), namespaces)
-    end
-    alias_method :[], :enhanced_find
+  def /(xpath)
+    enhanced_find(xpath.to_s)
+  end
 
-    def /(xpath)
-      enhanced_find(xpath.to_s)
-    end
-
-    def self.included(base)
-      # overwrite original methods
-      instance_methods.each { |method|
-        base.send(:define_method, method, instance_method(method))
-      }
-    end
-
+  def self.included(base)
+    # overwrite original methods
+    instance_methods.each { |method|
+      base.send(:define_method, method, instance_method(method))
+    }
   end
 
 end
