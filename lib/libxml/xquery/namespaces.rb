@@ -24,18 +24,30 @@
 ###############################################################################
 #++
 
-module LibXML::XML::XQuery::EnhancedFind
+module LibXML::XML::XQuery::Namespaces
 
-  def enhanced_find(xpath)
-    find(xpath.gsub(/\*\*/, 'descendant::node()'), namespaces)
+  def namespaces
+    @namespaces ||= self.class::DEFAULT_NAMESPACES
   end
-  alias_method :[], :enhanced_find
 
-  def /(xpath)
-    enhanced_find(xpath.to_s)
+  def namespaces=(ns)
+    if url
+      @namespaces = self.class.namespaces[url] = ns
+    else
+      raise "can't set namespaces (document has no URL)"
+    end
   end
 
   def self.included(base)
+    base.const_set(:DEFAULT_NAMESPACES, [])
+
+    # container for XML::Node's access to its document's namespaces
+    base.instance_variable_set(
+      :@namespaces, Hash.new(base.const_get(:DEFAULT_NAMESPACES))
+    )
+
+    class << base; attr_reader :namespaces; end
+
     # overwrite original methods
     instance_methods.each { |method|
       base.send(:define_method, method, instance_method(method))
@@ -44,6 +56,12 @@ module LibXML::XML::XQuery::EnhancedFind
 
 end
 
-[LibXML::XML::Document, LibXML::XML::Node].each { |klass|
-  klass.send :include, LibXML::XML::XQuery::EnhancedFind
+[LibXML::XML::Document].each { |klass|
+  klass.send :include, LibXML::XML::XQuery::Namespaces
 }
+
+class LibXML::XML::Node
+  def namespaces
+    LibXML::XML::Document.namespaces[doc.url]
+  end
+end

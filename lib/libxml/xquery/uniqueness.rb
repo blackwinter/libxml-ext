@@ -87,8 +87,6 @@ module LibXML::XML::XQuery::Uniqueness
 
 end
 
-class LibXML::XML::XPath::Object
-
-  include LibXML::XML::XQuery::Uniqueness
-
-end
+[LibXML::XML::XPath::Object].each { |klass|
+  klass.send :include, LibXML::XML::XQuery::Uniqueness
+}
