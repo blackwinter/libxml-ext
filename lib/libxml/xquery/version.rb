@@ -8,7 +8,7 @@ module LibXML
 
         MAJOR = 0
         MINOR = 2
-        TINY  = 1
+        TINY  = 2
 
         class << self
 
