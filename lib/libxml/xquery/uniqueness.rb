@@ -3,7 +3,7 @@
 #                                                                             #
 # A component of ruby-xquery, mimicking XQuery in Ruby.                       #
 #                                                                             #
-# Copyright (C) 2007-2008 Jens Wille                                          #
+# Copyright (C) 2007-2009 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
@@ -55,7 +55,7 @@ module LibXML::XML::XQuery::Uniqueness
     proxy.instance_variable_set(:@_this, self)
 
     class << proxy
-      (instance_methods - DELEGATORS).each { |method|
+      (instance_methods.map { |m| m.to_s } - DELEGATORS).each { |method|
         undef_method(method) unless method =~ /\A__/
       }
 
