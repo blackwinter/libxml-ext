@@ -2,7 +2,7 @@
 
 == VERSION
 
-This documentation refers to ruby-xquery version 0.2.2
+This documentation refers to ruby-xquery version 0.2.3
 
 
 == DESCRIPTION
@@ -26,7 +26,7 @@ Rubyforge project:: <http://rubyforge.org/projects/prometheus>
 
 == LICENSE AND COPYRIGHT
 
-Copyright (C) 2007-2008 Jens Wille
+Copyright (C) 2007-2009 Jens Wille
 
 ruby-xquery is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
