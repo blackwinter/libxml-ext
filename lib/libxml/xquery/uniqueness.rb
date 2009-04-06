@@ -56,7 +56,7 @@ module LibXML::XML::XQuery::Uniqueness
 
     class << proxy
       (instance_methods.map { |m| m.to_s } - DELEGATORS).each { |method|
-        undef_method(method) unless method =~ /\A__/
+        undef_method(method) unless method =~ /\A__/ || method == 'object_id'
       }
 
       def method_missing(*args)
