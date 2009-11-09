@@ -43,7 +43,14 @@ end
 class LibXML::XML::XPath::Object
 
   def to_s(sep = ' | ')
-    map { |n| (c = n.to_s(sep)).empty? ? nil : c }.compact.join(sep)
+    res = []
+
+    each { |node|
+      content = node.to_s(sep)
+      res << content unless content.empty?
+    }
+
+    res.join(sep)
   end
 
 end
