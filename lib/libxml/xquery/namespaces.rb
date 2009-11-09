@@ -61,7 +61,13 @@ end
 }
 
 class LibXML::XML::Node
+
   def namespaces
-    LibXML::XML::Document.namespaces[doc.url]
+    @namespaces ||= LibXML::XML::Document.namespaces[doc.url]
   end
+
+  def namespaces=(ns)
+    @namespaces = ns
+  end
+
 end
