@@ -3,7 +3,7 @@
 #                                                                             #
 # A component of ruby-xquery, mimicking XQuery in Ruby.                       #
 #                                                                             #
-# Copyright (C) 2007-2008 Jens Wille                                          #
+# Copyright (C) 2007-2009 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
