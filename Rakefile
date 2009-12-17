@@ -8,7 +8,8 @@ require 'lib/libxml/xquery/version'
 
 Hen.lay! {{
   :rubyforge => {
-    :package => 'ruby-xquery'
+    :project => %q{prometheus},
+    :package => %q{ruby-xquery}
   },
 
   :gem => {
