@@ -1,34 +1,30 @@
 module LibXML
 
-  module XML
+  module Ext
 
-    module XQuery
+    module Version
 
-      module Version
+      MAJOR = 0
+      MINOR = 3
+      TINY  = 0
 
-        MAJOR = 0
-        MINOR = 2
-        TINY  = 5
+      class << self
 
-        class << self
+        # Returns array representation.
+        def to_a
+          [MAJOR, MINOR, TINY]
+        end
 
-          # Returns array representation.
-          def to_a
-            [MAJOR, MINOR, TINY]
-          end
-
-          # Short-cut for version string.
-          def to_s
-            to_a.join('.')
-          end
-
+        # Short-cut for version string.
+        def to_s
+          to_a.join('.')
         end
 
       end
 
-      VERSION = Version.to_s
-
     end
+
+    VERSION = Version.to_s
 
   end
 

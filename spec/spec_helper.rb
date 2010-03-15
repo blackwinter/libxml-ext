@@ -1,7 +1,9 @@
-BASE = File.join(File.dirname(__FILE__), '..') unless Object.const_defined?(:BASE)
+require 'rubygems'
 
-$: << File.join(BASE, 'lib')
+$:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require 'libxml/xquery'
+require 'libxml/ext'
 
-DOC = LibXML::XML::Document.file(File.join(BASE, 'test_data', 'hamlet.xml')) unless Object.const_defined?(:DOC)
+unless Object.const_defined?(:DOC)
+  DOC = LibXML::XML::Document.file(File.join(File.dirname(__FILE__), 'hamlet.xml'))
+end

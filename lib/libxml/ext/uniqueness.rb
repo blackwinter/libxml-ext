@@ -1,32 +1,35 @@
 #--
 ###############################################################################
 #                                                                             #
-# A component of ruby-xquery, mimicking XQuery in Ruby.                       #
+# A component of libxml-ext, the LibXML extensions.                           #
 #                                                                             #
-# Copyright (C) 2007-2009 Jens Wille                                          #
+# Copyright (C) 2007-2010 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
 #                                                                             #
-# ruby-xquery is free software; you can redistribute it and/or modify it      #
+# libxml-ext is free software; you can redistribute it and/or modify it       #
 # under the terms of the GNU General Public License as published by the Free  #
 # Software Foundation; either version 3 of the License, or (at your option)   #
 # any later version.                                                          #
 #                                                                             #
-# ruby-xquery is distributed in the hope that it will be useful, but WITHOUT  #
+# libxml-ext is distributed in the hope that it will be useful, but WITHOUT   #
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or       #
 # FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for    #
 # more details.                                                               #
 #                                                                             #
 # You should have received a copy of the GNU General Public License along     #
-# with ruby-xquery. If not, see <http://www.gnu.org/licenses/>.               #
+# with libxml-ext. If not, see <http://www.gnu.org/licenses/>.                #
 #                                                                             #
 ###############################################################################
 #++
 
+require 'libxml'
 require 'forwardable'
 
-module LibXML::XML::XQuery::Uniqueness
+module LibXML
+  module Ext
+    module Uniqueness
 
   extend Forwardable
 
@@ -40,13 +43,13 @@ module LibXML::XML::XQuery::Uniqueness
       seen = Hash.new { |h, k| h[k] = true; false }
       uniq = []
 
-      _xquery_original_to_a.each { |n|
+      _libxml_ext_original_to_a.each { |n|
         uniq << n unless seen[n.to_s]
       }
 
       uniq
     else
-      _xquery_original_to_a
+      _libxml_ext_original_to_a
     end
   end
 
@@ -77,7 +80,7 @@ module LibXML::XML::XQuery::Uniqueness
   end
 
   def self.included(base)
-    base.send(:alias_method, :_xquery_original_to_a, :to_a)
+    base.send(:alias_method, :_libxml_ext_original_to_a, :to_a)
 
     # overwrite original methods
     instance_methods.each { |method|
@@ -85,8 +88,10 @@ module LibXML::XML::XQuery::Uniqueness
     }
   end
 
+    end
+  end
 end
 
 [LibXML::XML::XPath::Object].each { |klass|
-  klass.send :include, LibXML::XML::XQuery::Uniqueness
+  klass.send :include, LibXML::Ext::Uniqueness
 }
