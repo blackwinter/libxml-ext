@@ -55,8 +55,8 @@
         <tr class="top-aligned-row">
             <td><strong>In:</strong></td>
             <td>
-                <a href="../../../files/lib/libxml/ext/namespaces_rb.html">
-                lib/libxml/ext/namespaces.rb
+                <a href="../../../files/lib/libxml/ext/namespaces_mixin_rb.html">
+                lib/libxml/ext/namespaces_mixin.rb
                 </a>
         <br />
             </td>
@@ -80,9 +80,9 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000010">included</a>&nbsp;&nbsp;
-      <a href="#M000008">namespaces</a>&nbsp;&nbsp;
-      <a href="#M000009">namespaces=</a>&nbsp;&nbsp;
+      <a href="#M000015">included</a>&nbsp;&nbsp;
+      <a href="#M000013">namespaces</a>&nbsp;&nbsp;
+      <a href="#M000014">namespaces=</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -104,36 +104,36 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000010" class="method-detail">
-        <a name="M000010"></a>
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
 
         <div class="method-heading">
-          <a href="#M000010" class="method-signature">
+          <a href="#M000015" class="method-signature">
           <span class="method-name">included</span><span class="method-args">(base)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000010-source">
+            onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000015-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/libxml/ext/namespaces.rb, line 45</span>
-45:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)
-46:     <span class="ruby-identifier">base</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-identifier">:DEFAULT_NAMESPACES</span>, [])
-47: 
-48:     <span class="ruby-comment cmt"># container for XML::Node's access to its document's namespaces</span>
-49:     <span class="ruby-identifier">base</span>.<span class="ruby-identifier">instance_variable_set</span>(
-50:       <span class="ruby-identifier">:@namespaces</span>, <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">base</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">:DEFAULT_NAMESPACES</span>))
-51:     )
+    <span class="ruby-comment cmt"># File lib/libxml/ext/namespaces_mixin.rb, line 43</span>
+43:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)
+44:     <span class="ruby-identifier">base</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-identifier">:DEFAULT_NAMESPACES</span>, [])
+45: 
+46:     <span class="ruby-comment cmt"># container for XML::Node's access to its document's namespaces</span>
+47:     <span class="ruby-identifier">base</span>.<span class="ruby-identifier">instance_variable_set</span>(
+48:       <span class="ruby-identifier">:@namespaces</span>, <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">base</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">:DEFAULT_NAMESPACES</span>))
+49:     )
+50: 
+51:     <span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">base</span>; <span class="ruby-identifier">attr_reader</span> <span class="ruby-identifier">:namespaces</span>; <span class="ruby-keyword kw">end</span>
 52: 
-53:     <span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">base</span>; <span class="ruby-identifier">attr_reader</span> <span class="ruby-identifier">:namespaces</span>; <span class="ruby-keyword kw">end</span>
-54: 
-55:     <span class="ruby-comment cmt"># overwrite original methods</span>
-56:     <span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
-57:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:define_method</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">instance_method</span>(<span class="ruby-identifier">method</span>))
-58:     }
-59:   <span class="ruby-keyword kw">end</span>
+53:     <span class="ruby-comment cmt"># overwrite original methods</span>
+54:     <span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+55:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:define_method</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">instance_method</span>(<span class="ruby-identifier">method</span>))
+56:     }
+57:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -141,51 +141,51 @@
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000008" class="method-detail">
-        <a name="M000008"></a>
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
 
         <div class="method-heading">
-          <a href="#M000008" class="method-signature">
+          <a href="#M000013" class="method-signature">
           <span class="method-name">namespaces</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000008-source">
+            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000013-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/libxml/ext/namespaces.rb, line 33</span>
-33:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces</span>
-34:     <span class="ruby-ivar">@namespaces</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">DEFAULT_NAMESPACES</span>
-35:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/libxml/ext/namespaces_mixin.rb, line 31</span>
+31:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces</span>
+32:     <span class="ruby-ivar">@namespaces</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">DEFAULT_NAMESPACES</span>
+33:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000009" class="method-detail">
-        <a name="M000009"></a>
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
 
         <div class="method-heading">
-          <a href="#M000009" class="method-signature">
+          <a href="#M000014" class="method-signature">
           <span class="method-name">namespaces=</span><span class="method-args">(ns)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000009-source">
+            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000014-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/libxml/ext/namespaces.rb, line 37</span>
-37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces=</span>(<span class="ruby-identifier">ns</span>)
-38:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">url</span>
-39:       <span class="ruby-ivar">@namespaces</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">namespaces</span>[<span class="ruby-identifier">url</span>] = <span class="ruby-identifier">ns</span>
-40:     <span class="ruby-keyword kw">else</span>
-41:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;can't set namespaces (document has no URL)&quot;</span>
-42:     <span class="ruby-keyword kw">end</span>
-43:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/libxml/ext/namespaces_mixin.rb, line 35</span>
+35:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces=</span>(<span class="ruby-identifier">ns</span>)
+36:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">url</span>
+37:       <span class="ruby-ivar">@namespaces</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">namespaces</span>[<span class="ruby-identifier">url</span>] = <span class="ruby-identifier">ns</span>
+38:     <span class="ruby-keyword kw">else</span>
+39:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;can't set namespaces (document has no URL)&quot;</span>
+40:     <span class="ruby-keyword kw">end</span>
+41:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
