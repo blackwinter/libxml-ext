@@ -24,20 +24,18 @@
 ###############################################################################
 #++
 
-require 'libxml'
-
 module LibXML
   module Ext
-    module EnhancedFind
+    module Find
 
-  def enhanced_find(xpath)
+  def xfind(xpath)
     find(xpath.gsub(/\*\*/, 'descendant::node()'), namespaces)
   end
 
-  alias_method :[], :enhanced_find
+  alias_method :[], :xfind
 
   def /(xpath)
-    enhanced_find(xpath.to_s)
+    xfind(xpath.to_s)
   end
 
   def self.included(base)
@@ -50,7 +48,3 @@ module LibXML
     end
   end
 end
-
-[LibXML::XML::Document, LibXML::XML::Node].each { |klass|
-  klass.send :include, LibXML::Ext::EnhancedFind
-}

@@ -24,17 +24,15 @@
 ###############################################################################
 #++
 
-require 'libxml'
 require 'forwardable'
 
 module LibXML
   module Ext
-    module Uniqueness
+    module Uniq
 
   extend Forwardable
 
-  DELEGATORS = %w[to_a each length size]
-
+  DELEGATORS = %w[to_a each length size] unless const_defined?(:DELEGATORS)
   def_delegators *DELEGATORS
 
   def to_a
@@ -91,7 +89,3 @@ module LibXML
     end
   end
 end
-
-[LibXML::XML::XPath::Object].each { |klass|
-  klass.send :include, LibXML::Ext::Uniqueness
-}
