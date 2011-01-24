@@ -55,10 +55,6 @@
         <tr class="top-aligned-row">
             <td><strong>In:</strong></td>
             <td>
-                <a href="../../../files/lib/libxml/ext/namespaces_rb.html">
-                lib/libxml/ext/namespaces.rb
-                </a>
-        <br />
                 <a href="../../../files/lib/libxml/ext/string_rb.html">
                 lib/libxml/ext/string.rb
                 </a>
@@ -90,9 +86,7 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000002">namespaces</a>&nbsp;&nbsp;
-      <a href="#M000003">namespaces=</a>&nbsp;&nbsp;
-      <a href="#M000004">to_s</a>&nbsp;&nbsp;
+      <a href="#M000002">to_s</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -119,7 +113,7 @@
 
         <div class="method-heading">
           <a href="#M000002" class="method-signature">
-          <span class="method-name">namespaces</span><span class="method-args">()</span>
+          <span class="method-name">to_s</span><span class="method-args">(sep = nil)</span>
           </a>
         </div>
       
@@ -127,52 +121,6 @@
           <p><a class="source-toggle" href="#"
             onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000002-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/libxml/ext/namespaces.rb, line 9</span>
- 9:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces</span>
-10:     <span class="ruby-ivar">@namespaces</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">LibXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">namespaces</span>[<span class="ruby-identifier">doc</span>.<span class="ruby-identifier">url</span>]
-11:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000003" class="method-detail">
-        <a name="M000003"></a>
-
-        <div class="method-heading">
-          <a href="#M000003" class="method-signature">
-          <span class="method-name">namespaces=</span><span class="method-args">(ns)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000003-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/libxml/ext/namespaces.rb, line 13</span>
-13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces=</span>(<span class="ruby-identifier">ns</span>)
-14:     <span class="ruby-ivar">@namespaces</span> = <span class="ruby-identifier">ns</span>
-15:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000004" class="method-detail">
-        <a name="M000004"></a>
-
-        <div class="method-heading">
-          <a href="#M000004" class="method-signature">
-          <span class="method-name">to_s</span><span class="method-args">(sep = nil)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000004-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/libxml/ext/string.rb, line 39</span>
 39:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">sep</span> = <span class="ruby-keyword kw">nil</span>)
