@@ -3,7 +3,7 @@
 #                                                                             #
 # A component of libxml-ext, the LibXML extensions.                           #
 #                                                                             #
-# Copyright (C) 2007-2010 Jens Wille                                          #
+# Copyright (C) 2007-2011 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@uni-koeln.de>                                    #
@@ -29,7 +29,7 @@ module LibXML
     module Find
 
   def xfind(xpath)
-    find(xpath.gsub(/\*\*/, 'descendant::node()'), namespaces)
+    find(xpath.gsub('**', 'descendant::node()'))
   end
 
   alias_method :[], :xfind
