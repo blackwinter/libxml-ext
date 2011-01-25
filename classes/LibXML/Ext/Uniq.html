@@ -80,11 +80,11 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000010">included</a>&nbsp;&nbsp;
-      <a href="#M000006">to_a</a>&nbsp;&nbsp;
-      <a href="#M000007">uniq</a>&nbsp;&nbsp;
-      <a href="#M000008">uniq!</a>&nbsp;&nbsp;
-      <a href="#M000009">uniq?</a>&nbsp;&nbsp;
+      <a href="#M000007">included</a>&nbsp;&nbsp;
+      <a href="#M000003">to_a</a>&nbsp;&nbsp;
+      <a href="#M000004">uniq</a>&nbsp;&nbsp;
+      <a href="#M000005">uniq!</a>&nbsp;&nbsp;
+      <a href="#M000006">uniq?</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -119,77 +119,12 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000010" class="method-detail">
-        <a name="M000010"></a>
-
-        <div class="method-heading">
-          <a href="#M000010" class="method-signature">
-          <span class="method-name">included</span><span class="method-args">(base)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000010-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/libxml/ext/uniq_mixin.rb, line 80</span>
-80:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)
-81:     <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:alias_method</span>, <span class="ruby-identifier">:_libxml_ext_original_to_a</span>, <span class="ruby-identifier">:to_a</span>)
-82: 
-83:     <span class="ruby-comment cmt"># overwrite original methods</span>
-84:     <span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
-85:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:define_method</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">instance_method</span>(<span class="ruby-identifier">method</span>))
-86:     }
-87:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="section-bar">Public Instance methods</h3>
-
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
-
-        <div class="method-heading">
-          <a href="#M000006" class="method-signature">
-          <span class="method-name">to_a</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000006-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/libxml/ext/uniq_mixin.rb, line 38</span>
-38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_a</span>
-39:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@_uniq</span>
-40:       <span class="ruby-comment cmt"># return unique nodes according to their #to_s</span>
-41:       <span class="ruby-identifier">seen</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-keyword kw">true</span>; <span class="ruby-keyword kw">false</span> }
-42:       <span class="ruby-identifier">uniq</span> = []
-43: 
-44:       <span class="ruby-identifier">_libxml_ext_original_to_a</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
-45:         <span class="ruby-identifier">uniq</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">n</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_s</span>]
-46:       }
-47: 
-48:       <span class="ruby-identifier">uniq</span>
-49:     <span class="ruby-keyword kw">else</span>
-50:       <span class="ruby-identifier">_libxml_ext_original_to_a</span>
-51:     <span class="ruby-keyword kw">end</span>
-52:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
       <div id="method-M000007" class="method-detail">
         <a name="M000007"></a>
 
         <div class="method-heading">
           <a href="#M000007" class="method-signature">
-          <span class="method-name">uniq</span><span class="method-args">()</span>
+          <span class="method-name">included</span><span class="method-args">(base)</span>
           </a>
         </div>
       
@@ -198,70 +133,127 @@
             onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000007-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/libxml/ext/uniq_mixin.rb, line 54</span>
-54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uniq</span>
-55:     <span class="ruby-identifier">proxy</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">uniq!</span>
-56:     <span class="ruby-identifier">proxy</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">:@_this</span>, <span class="ruby-keyword kw">self</span>)
-57: 
-58:     <span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">proxy</span>
-59:       (<span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_s</span> } <span class="ruby-operator">-</span> <span class="ruby-constant">DELEGATORS</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
-60:         <span class="ruby-identifier">undef_method</span>(<span class="ruby-identifier">method</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">method</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\A__/</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">method</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'object_id'</span>
-61:       }
-62: 
-63:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-64:         <span class="ruby-identifier">block_given?</span> <span class="ruby-value">? </span><span class="ruby-ivar">@_this</span>.<span class="ruby-identifier">send</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">a</span> } <span class="ruby-operator">:</span> <span class="ruby-ivar">@_this</span>.<span class="ruby-identifier">send</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-65:       <span class="ruby-keyword kw">end</span>
-66:     <span class="ruby-keyword kw">end</span>
-67: 
-68:     <span class="ruby-identifier">proxy</span>
-69:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/libxml/ext/uniq_mixin.rb, line 72</span>
+72:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)
+73:     <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:alias_method</span>, <span class="ruby-identifier">:_libxml_ext_original_to_a</span>, <span class="ruby-identifier">:to_a</span>)
+74: 
+75:     <span class="ruby-comment cmt"># overwrite original methods</span>
+76:     <span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+77:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:define_method</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">instance_method</span>(<span class="ruby-identifier">method</span>))
+78:     }
+79:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000008" class="method-detail">
-        <a name="M000008"></a>
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
 
         <div class="method-heading">
-          <a href="#M000008" class="method-signature">
+          <a href="#M000003" class="method-signature">
+          <span class="method-name">to_a</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/libxml/ext/uniq_mixin.rb, line 38</span>
+38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_a</span>
+39:     <span class="ruby-identifier">ary</span>  = <span class="ruby-identifier">_libxml_ext_original_to_a</span>
+40:     <span class="ruby-identifier">seen</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-keyword kw">true</span>; <span class="ruby-keyword kw">false</span> }
+41: 
+42:     <span class="ruby-comment cmt"># return unique nodes according to their #to_s</span>
+43:     <span class="ruby-ivar">@_uniq</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span> <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">node</span>.<span class="ruby-identifier">to_s</span>] } <span class="ruby-operator">:</span> <span class="ruby-identifier">ary</span>
+44:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">uniq</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/libxml/ext/uniq_mixin.rb, line 46</span>
+46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uniq</span>
+47:     <span class="ruby-identifier">proxy</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">uniq!</span>
+48:     <span class="ruby-identifier">proxy</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">:@_this</span>, <span class="ruby-keyword kw">self</span>)
+49: 
+50:     <span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">proxy</span>
+51:       (<span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_s</span> } <span class="ruby-operator">-</span> <span class="ruby-constant">DELEGATORS</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+52:         <span class="ruby-identifier">undef_method</span>(<span class="ruby-identifier">method</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">method</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\A__/</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">method</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'object_id'</span>
+53:       }
+54: 
+55:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+56:         <span class="ruby-ivar">@_this</span>.<span class="ruby-identifier">send</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block_given?</span> <span class="ruby-value">? </span><span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>)
+57:       <span class="ruby-keyword kw">end</span>
+58:     <span class="ruby-keyword kw">end</span>
+59: 
+60:     <span class="ruby-identifier">proxy</span>
+61:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="#M000005" class="method-signature">
           <span class="method-name">uniq!</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000008-source">
+            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000005-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/libxml/ext/uniq_mixin.rb, line 71</span>
-71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uniq!</span>
-72:     <span class="ruby-ivar">@_uniq</span> = <span class="ruby-keyword kw">true</span>
-73:     <span class="ruby-keyword kw">self</span>
-74:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/libxml/ext/uniq_mixin.rb, line 63</span>
+63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uniq!</span>
+64:     <span class="ruby-ivar">@_uniq</span> = <span class="ruby-keyword kw">true</span>
+65:     <span class="ruby-keyword kw">self</span>
+66:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000009" class="method-detail">
-        <a name="M000009"></a>
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
 
         <div class="method-heading">
-          <a href="#M000009" class="method-signature">
+          <a href="#M000006" class="method-signature">
           <span class="method-name">uniq?</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000009-source">
+            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000006-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/libxml/ext/uniq_mixin.rb, line 76</span>
-76:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uniq?</span>
-77:     <span class="ruby-ivar">@_uniq</span>
-78:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/libxml/ext/uniq_mixin.rb, line 68</span>
+68:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uniq?</span>
+69:     <span class="ruby-ivar">@_uniq</span>
+70:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
