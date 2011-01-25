@@ -36,19 +36,11 @@ module LibXML
   def_delegators *DELEGATORS
 
   def to_a
-    if @_uniq
-      # return unique nodes according to their #to_s
-      seen = Hash.new { |h, k| h[k] = true; false }
-      uniq = []
+    ary  = _libxml_ext_original_to_a
+    seen = Hash.new { |h, k| h[k] = true; false }
 
-      _libxml_ext_original_to_a.each { |n|
-        uniq << n unless seen[n.to_s]
-      }
-
-      uniq
-    else
-      _libxml_ext_original_to_a
-    end
+    # return unique nodes according to their #to_s
+    @_uniq ? ary.delete_if { |node| seen[node.to_s] } : ary
   end
 
   def uniq
@@ -61,7 +53,7 @@ module LibXML
       }
 
       def method_missing(*args)
-        block_given? ? @_this.send(*args) { |a| yield a } : @_this.send(*args)
+        @_this.send(*args, &block_given? ? Proc.new : nil)
       end
     end
 
