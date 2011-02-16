@@ -1,4 +1,4 @@
-require %q{lib/libxml/ext/version}
+require File.expand_path(%q{../lib/libxml/ext/version}, __FILE__)
 
 begin
   require 'hen'
@@ -8,14 +8,12 @@ begin
       :name         => %q{libxml-ext},
       :version      => LibXML::Ext::VERSION,
       :summary      => %q{LibXML extensions},
-      :homepage     => 'http://github.com/blackwinter/libxml-ext',
-      :files        => FileList['lib/**/*.rb'].to_a,
-      :extra_files  => FileList['[A-Z]*', 'spec/**/*.rb', 'test_data/**/*'].to_a,
+      :author       => %q{Jens Wille},
+      :email        => %q{jens.wille@uni-koeln.de},
+      :homepage     => :blackwinter,
       :dependencies => [['libxml-ruby', '>= 0.9.3']]
     }
   }}
-rescue LoadError
-  abort "Please install the 'hen' gem first."
+rescue LoadError => err
+  warn "Please install the `hen' gem. (#{err})"
 end
-
-### Place your custom Rake tasks here.
