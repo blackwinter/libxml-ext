@@ -6,7 +6,7 @@ module LibXML
 
       MAJOR = 0
       MINOR = 4
-      TINY  = 0
+      TINY  = 1
 
       class << self
 
