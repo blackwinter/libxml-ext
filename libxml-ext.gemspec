@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors = ["Jens Wille"]
   s.date = %q{2011-04-29}
   s.description = %q{LibXML extensions}
-  s.email = %q{jens.wille@uni-koeln.de}
+  s.email = %q{jens.wille@gmail.com}
   s.extra_rdoc_files = ["README", "COPYING", "ChangeLog"]
   s.files = ["lib/libxml/ext/find.rb", "lib/libxml/ext/version.rb", "lib/libxml/ext/find_mixin.rb", "lib/libxml/ext/uniq_mixin.rb", "lib/libxml/ext/string.rb", "lib/libxml/ext/default_prefix.rb", "lib/libxml/ext/uniq.rb", "lib/libxml/ext.rb", "README", "ChangeLog", "Rakefile", "COPYING", "spec/spec.opts", "spec/play.dtd", "spec/libxml/ext_spec.rb", "spec/hamlet.xml", "spec/spec_helper.rb"]
   s.homepage = %q{http://github.com/blackwinter/libxml-ext}

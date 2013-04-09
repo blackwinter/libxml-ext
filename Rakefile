@@ -9,7 +9,7 @@ begin
       :version      => LibXML::Ext::VERSION,
       :summary      => %q{LibXML extensions},
       :author       => %q{Jens Wille},
-      :email        => %q{jens.wille@uni-koeln.de},
+      :email        => %q{jens.wille@gmail.com},
       :homepage     => :blackwinter,
       :dependencies => [['libxml-ruby', '>= 0.9.3']]
     }
