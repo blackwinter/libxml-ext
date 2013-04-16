@@ -1,1 +1,12 @@
-Tue, 25 Jan 2011 12:31:13 +0100
+Tue, 16 Apr 2013 12:30:37 +0200
+README	Tue, 09 Apr 2013 11:41:52 +0200
+COPYING	Tue, 09 Apr 2013 11:33:34 +0200
+ChangeLog	Tue, 16 Apr 2013 12:19:20 +0200
+lib/libxml/ext.rb	Tue, 09 Apr 2013 11:42:24 +0200
+lib/libxml/ext/find.rb	Tue, 09 Apr 2013 11:33:34 +0200
+lib/libxml/ext/uniq.rb	Tue, 09 Apr 2013 11:33:34 +0200
+lib/libxml/ext/string.rb	Tue, 09 Apr 2013 11:43:04 +0200
+lib/libxml/ext/version.rb	Tue, 09 Apr 2013 11:33:34 +0200
+lib/libxml/ext/find_mixin.rb	Tue, 09 Apr 2013 11:42:56 +0200
+lib/libxml/ext/uniq_mixin.rb	Tue, 09 Apr 2013 11:43:11 +0200
+lib/libxml/ext/default_prefix.rb	Tue, 09 Apr 2013 11:42:46 +0200
