@@ -10,6 +10,7 @@ begin
       :summary      => %q{LibXML extensions},
       :author       => %q{Jens Wille},
       :email        => %q{jens.wille@gmail.com},
+      :license      => %q{AGPL},
       :homepage     => :blackwinter,
       :dependencies => [['libxml-ruby', '>= 0.9.3']]
     }
